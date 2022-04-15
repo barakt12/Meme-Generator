@@ -14,7 +14,7 @@ function renderGallery() {
   const images = getImages()
   let strHTML = `<label onchange="onImgInput(event)" class="fa fa-solid fa-upload upload-img gallery-image"><input name="uploadimg" type="file"/ ></label>`
   let imgHTML = images.map((img) => {
-    return `<img onclick="onSelectImage(${img.id})" class="gallery-image" src="../images/${img.id}.jpg">`
+    return `<img onclick="onSelectImage(${img.id})" class="gallery-image" src="./images/${img.id}.jpg">`
   })
   const elContainer = document.querySelector('.imgs-container')
   elContainer.innerHTML = strHTML + imgHTML.join('')
