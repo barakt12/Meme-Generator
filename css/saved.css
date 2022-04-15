@@ -1,0 +1,33 @@
+.saved {
+  text-align: center;
+  min-height: 77.5vh;
+}
+
+.saved-header {
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  color: rgb(221, 221, 221);
+  font-size: 1.7rem;
+}
+
+.delete-saved-btn {
+  cursor: pointer;
+  position: absolute;
+  /* bottom: 230px; */
+  right: 2%;
+  top: 2%;
+  /* right: 90px; */
+  width: 37px;
+  height: 35px;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  background-color: rgb(225, 36, 36);
+  color: white;
+  border-radius: 10px;
+}
+
+.saved-img-container {
+  position: relative;
+}

@@ -1,0 +1,92 @@
+.header-container {
+  display: flex;
+  height: 80px;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px;
+  margin-top: 20px;
+  background: linear-gradient(
+    90deg,
+    rgb(25, 170, 196) 24%,
+    rgb(44 181 108) 68%
+  );
+  border-radius: 50px;
+  box-shadow: -1px 2px 5px 1px #1a1a1a;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  transform: translate(120%);
+  position: fixed;
+  background-color: #383b42;
+  transition: 0.6s;
+}
+
+.navbar.open-menu {
+  transform: translate(0);
+  z-index: 20;
+}
+
+.backdrop.open-menu {
+  position: fixed;
+  cursor: pointer;
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  transition: 0.6s;
+  background-color: rgba(40, 40, 40, 0.532);
+  z-index: 10;
+}
+
+.hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: white;
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn {
+  cursor: pointer;
+  width: 250px;
+  height: 100px;
+  font-family: poppins;
+  border: none;
+  background-color: unset;
+  color: rgb(241, 241, 241);
+  font-size: 1.4rem;
+  /* border-radius: 50px; */
+  border-bottom: 1px solid rgba(128, 128, 128, 0.155);
+}
+
+.btn:hover {
+  background-color: white;
+  color: rgb(44 181 108);
+  box-shadow: 0px 2px 3px 2px rgb(0 0 0 / 23%);
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.btn:active {
+  background-color: white;
+  color: rgb(44 181 108);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logo {
+  margin-inline-start: 10px;
+  height: 2rem;
+  cursor: pointer;
+}

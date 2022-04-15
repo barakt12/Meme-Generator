@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memegen</title>
+    <script src="https://kit.fontawesome.com/f71a3c6bc9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body onload="initGallery()">
+    <header class="header-container">
+      <img
+        onclick="moveToPage('gallery')"
+        class="logo"
+        src="images/LOGO.png"
+        alt=""
+      />
+      <button onclick="onToggleMenu()" class="fa fa-solid fa-bars hamburger"></button>
+      <nav class="navbar">
+        <button onclick="moveToPage('gallery')" class="btn gallery-btn">
+
+          Gallery
+        </button>
+        <button onclick="moveToPage('saved'); renderSaved()" class="btn saved-btn">
+          Saved
+        </button>
+        <button onclick="moveToPage('about')" class="btn about-btn">
+          About
+        </button>
+      </nav>
+    </header>
+    <main class="gallery">
+      <nav class="filter">
+        <div class="search-bar">
+          <input class="search-bar-input" type="text" list="searchKeywords" oninput="onFilterImgs(this.value)" placeholder="Search">
+          <datalist id="searchKeywords">
+            <!--fallback-->
+            <select name="searchKeywords" id=""> 
+              <option value="funny"></option>
+              <option value="cute"></option>
+              <option value="celebrity"></option>
+              <option value="animal"></option>
+              <option value="kids"></option>
+              <option value="men"></option>
+            </select>
+          </datalist>
+        </div>
+        <div class="categories"></div>
+      </nav>
+      <div class="imgs-container"></div>
+    </main>
+    <section class="editor hidden">
+
+        <div class="canvas-container">
+          <canvas id="meme-canvas" ></canvas>
+      </div>
+      <div class="edit-panel">
+        <input
+          class="text-content-edit"
+          type="text"
+          placeholder="Enter text here"
+
+          oninput="onSetText(this.value)"
+        />
+        <div class="lines-edit">
+          <button onclick="onSwitchLine()" class="btn-edit switch-line">
+            <i class="fa fa-solid fa-arrows-up-down"></i>
+          </button>
+          <button onclick="onAddLine()" class="btn-edit add-line">
+            <i class="fa fa-solid fa-plus"></i>
+          </button>
+          <button onclick="onDeleteLine()" class="btn-edit delete-line">
+            <i class="fa fa-light fa-trash-can"></i>
+
+          </button>
+        </div>
+        <div class="text-edit">
+          <button class="btn-edit" onclick="onChangeTextSize(5)">
+            <i class="fa fa-solid fa-arrow-up-a-z"></i>
+          </button>
+          <button class="btn-edit" onclick="onChangeTextSize(-5)">
+            <i class="fa fa-solid fa-arrow-down-a-z"></i>
+          </button>
+          <button class="btn-edit" onclick="onChangeTextAlignment('end')">
+            <i class="fa fa-solid fa-align-left"></i>
+          </button>
+          <button class="btn-edit" onclick="onChangeTextAlignment('center')">
+            <i class="fa fa-solid fa-align-center"></i>
+          </button">
+          <button class="btn-edit" onclick="onChangeTextAlignment('start')">
+            <i class="fa fa-solid fa-align-right"></i>
+          </button>
+          <select class="font-select" onchange="onChangeTextFont(this.value)" name="font">
+            <option value="Impact">Impact</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Helvetica">Helvetica</option>
+          </select>
+          <input class="fa fa-solid fa-paintbrush btn-edit clr" onchange="onChangeStrokeColor(this.value)" type="color" name="stroke-color" />
+            <input class="fa fa-solid fa-fill-drip btn-edit clr" id="fill-color" onchange="onChangeFillColor(this.value)" type="color" name="fill-color"  />
+        </div>
+        <div class="stickers-container"></div>
+        <div class="dsp-btns-container">
+          <button class="dsp-btn share-btn" onclick="onShare(this)"><i class="fa-solid fa-share-nodes"></i> Share</button>
+          <button class="dsp-btn save-btn" onclick="onSave()"><i class="fa fa-solid fa-box-archive"></i> Save</button>
+          <button class="dsp-btn download-btn"><a href="#" onclick="onDownload(this)"><i class="fa-solid fa-download"></i> Download</a></button>
+        </div>
+      </div>
+    </section>
+    <section class="saved gallery hidden">
+      <div class="saved-header"><h1>Saved Memes</h1></div>
+      <div class="imgs-container"></div>
+    </section>
+    <section class="about hidden">
+      <div class="about-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex tenetur, maxime molestias ea cumque blanditiis rem sapiente. Officiis impedit corrupti eius modi, assumenda id explicabo dolore earum omnis odio perspiciatis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae harum ut accusantium quia repellat doloremque commodi! Incidunt, est cumque error impedit omnis magni, enim, nostrum tempore voluptatibus illum eligendi id?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero itaque deserunt numquam iure dolor laudantium necessitatibus quaerat, ducimus quo quae obcaecati tempora consectetur temporibus, ratione molestiae consequuntur, quibusdam quam commodi?
+      </div>
+    </section>
+    <div onclick="onToggleMenu()" class="backdrop"></div>
+    <footer>
+      <div class="footer-container">
+       <img class="logo" src="images/LOGO.png" alt="">
+       <small>Copyright&copy 2022</small>
+      </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/canvas.service.js"></script>
+    <script src="js/services/editor.service.js"></script>
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/services/upload.service.js"></script>
+    <script src="js/controllers/saved.controller.js"></script>
+    <script src="js/controllers/main.controller.js"></script>
+    <script src="js/controllers/editor.controller.js"></script>
+  </body>
+</html>

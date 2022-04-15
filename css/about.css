@@ -1,0 +1,17 @@
+.about:not(.hidden) {
+  display: flex;
+  height: 79.15vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-info {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  width: 40%;
+  height: 60%;
+  background-color: gray;
+  border-radius: 25px;
+  color: white;
+}

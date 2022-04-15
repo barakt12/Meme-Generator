@@ -1,0 +1,7 @@
+.imgs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 25px;
+  padding: 45px;
+  /* padding-top: 0; */
+}
