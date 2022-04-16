@@ -1,7 +1,6 @@
 'use strict'
 
 const DB_KEY = 'savedMemesDB'
-const gCanvas = document.querySelector('#meme-canvas')
 
 let gStickers = ['😂', '😴', '🤡', '💩']
 
@@ -115,6 +114,7 @@ function setTextSize(val) {
 }
 
 function setTextAlignment(val) {
+  if (!gMeme.selectedLineIdx >= 0) return
   const line = gMeme.lines[gMeme.selectedLineIdx]
   if (val === 'end') {
     line.pos.x = gElCanvas.width - gElCanvas.width / 3

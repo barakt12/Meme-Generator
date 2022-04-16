@@ -3,21 +3,21 @@
 // Removes meme from local storage
 
 function removeMemeFromStorage(idx) {
-  const memes = getSavedMemes()
-  memes.splice(idx, 1)
-  saveToStorage(DB_KEY, memes)
+  const savedMemes = getSavedMemes()
+  savedMemes.splice(idx, 1)
+  saveToStorage(DB_KEY, savedMemes)
   renderSaved()
 }
 
 // Renders saved memes
 
 function renderSaved() {
-  const memes = getSavedMemes()
-  if (!memes || memes === null) {
+  const savedMemes = getSavedMemes()
+  if (!savedMemes || savedMemes === null) {
     return
   }
 
-  let strHTMLs = memes.map((meme, idx) => {
+  let strHTMLs = savedMemes.map((meme, idx) => {
     return `
     <div class="saved-img-container">
       <img class="gallery-image" src=${meme} alt="" />

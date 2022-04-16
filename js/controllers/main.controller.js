@@ -132,3 +132,10 @@ function onSizeUpKeyword(word) {
   sizeUpKeyword(word)
   initGallery()
 }
+
+// Flexible Button
+
+function onFlexibleBtn() {
+  const randomImgIdx = getRndInteger(1, 18)
+  onSelectImage(randomImgIdx)
+}
