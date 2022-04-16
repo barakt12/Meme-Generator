@@ -30,6 +30,7 @@ function resetSelectedLine() {
   gMeme.lines.forEach((_, idx) => {
     gMeme.lines[idx].isSelected = false
   })
+  gMeme.selectedLineIdx = -1
 }
 
 function setTextSize(val) {

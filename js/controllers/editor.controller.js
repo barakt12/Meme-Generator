@@ -5,6 +5,8 @@ let gCtx
 let gStartPos
 
 function initMeme(img) {
+  resetSelectedLine()
+  setSelectedLine(0)
   createCanvas()
   resizeCanvas()
   addListeners()
@@ -64,6 +66,7 @@ function makeLine(line) {
 }
 
 function markLine(line) {
+  if (!line) return
   const lineWidth = gCtx.measureText(line.txt).width
   const lineHeight = line.size + 30
   gCtx.strokeStyle = 'red'
@@ -159,6 +162,8 @@ function onShare(ellink) {
 }
 
 function onSave() {
+  resetSelectedLine(true)
+  renderMeme(gCurrImg)
   const meme = gElCanvas.toDataURL('image/jpeg')
   saveMemeToStorage(meme)
   renderSaved()
