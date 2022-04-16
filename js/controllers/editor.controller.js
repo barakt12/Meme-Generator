@@ -6,10 +6,12 @@ let gStartPos
 
 // Editor initalization
 function initMeme(img) {
-  resetSelectedLine()
+  // resetSelectedLine()
   setSelectedLine(0)
   createCanvas()
   resizeCanvas()
+  initLinePositions()
+
   addListeners()
   renderMeme(img)
   renderStickers()
@@ -60,7 +62,6 @@ function addTouchListeners() {
 function renderMeme(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
   const memeObj = getGMeme()
-  initLinePositions()
   const lines = memeObj.lines
   lines.forEach((line) => makeLine(line))
   markLine(gMeme.lines[gMeme.selectedLineIdx])
@@ -130,7 +131,7 @@ function onShare(ellink) {
 }
 
 function onSave() {
-  resetSelectedLine(true)
+  resetSelectedLine()
   renderMeme(gCurrImg)
   const meme = gElCanvas.toDataURL('image/jpeg')
   saveMemeToStorage(meme)

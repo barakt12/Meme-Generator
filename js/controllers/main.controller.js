@@ -135,7 +135,7 @@ function onSizeUpKeyword(word) {
 
 // Flexible Button
 
-function onFlexibleBtn() {
-  const randomImgIdx = getRndInteger(1, 18)
-  onSelectImage(randomImgIdx)
-}
+// function onFlexibleBtn() {
+//   const randomImgIdx = getRndInteger(1, 18)
+//   onSelectImage(randomImgIdx)
+// }

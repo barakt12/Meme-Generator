@@ -109,12 +109,12 @@ function resetSelectedLine() {
 }
 
 function setTextSize(val) {
-  if (!gMeme.selectedLineIdx >= 0) return
+  // if (!gMeme.selectedLineIdx >= 0) return
   gMeme.lines[gMeme.selectedLineIdx].size += val
 }
 
 function setTextAlignment(val) {
-  if (!gMeme.selectedLineIdx >= 0) return
+  // if (!gMeme.selectedLineIdx >= 0) return
   const line = gMeme.lines[gMeme.selectedLineIdx]
   if (val === 'end') {
     line.pos.x = gElCanvas.width - gElCanvas.width / 3
@@ -126,17 +126,17 @@ function setTextAlignment(val) {
 }
 
 function changeStrokeColor(val) {
-  if (!gMeme.selectedLineIdx >= 0) return
+  // if (!gMeme.selectedLineIdx >= 0) return
   gMeme.lines[gMeme.selectedLineIdx].strokeColor = val
 }
 
 function changeFillColor(val) {
-  if (!gMeme.selectedLineIdx >= 0) return
+  // if (!gMeme.selectedLineIdx >= 0) return
   gMeme.lines[gMeme.selectedLineIdx].fillColor = val
 }
 
 function changeTextFont(val) {
-  if (!gMeme.selectedLineIdx >= 0) return
+  // if (!gMeme.selectedLineIdx >= 0) return
   gMeme.lines[gMeme.selectedLineIdx].fontfamily = val
 }
 
@@ -195,7 +195,9 @@ function deleteLine() {
   if (selectedLineIdx >= 0) {
     gMeme.lines.splice(selectedLineIdx, 1)
     if (gMeme.lines.length) {
-      gMeme.selectedLineIdx = selectedLineIdx - 1
+      gMeme.selectedLineIdx =
+        selectedLineIdx === 1 ? gMeme.selectedLineIdx - 1 : 0
+      console.log(gMeme.selectedLineIdx)
       gMeme.lines[gMeme.selectedLineIdx].isSelected = true
     }
   }
