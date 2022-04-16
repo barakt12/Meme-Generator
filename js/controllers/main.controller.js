@@ -4,12 +4,14 @@ let gIsClicked = false
 const pages = ['gallery', 'editor', 'saved', 'about', 'about-info']
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
+// First Initialization of the app
 function initGallery() {
   renderGallery()
   renderKeywords()
   createCanvas()
 }
 
+// Renders Gallery
 function renderGallery() {
   const images = getImages()
   let strHTML = `<label onchange="onImgInput(event)" class="fa fa-solid fa-upload upload-img gallery-image"><input name="uploadimg" type="file"/ ></label>`
@@ -20,6 +22,7 @@ function renderGallery() {
   elContainer.innerHTML = strHTML + imgHTML.join('')
 }
 
+// Selecting an image from the gallery
 function onSelectImage(id) {
   setSelectedImg(id)
   const currImg = getSelectedImg()
@@ -32,6 +35,7 @@ function onSelectImage(id) {
   moveToPage('editor')
 }
 
+// Moves between pages
 function moveToPage(targetPage) {
   pages.forEach((page) => {
     document.querySelector(`.${page}`).classList.add('hidden')
@@ -53,6 +57,9 @@ function onDown(ev) {
     renderMeme(gCurrImg)
     markLine(gMeme.lines[gMeme.selectedLineIdx])
     document.querySelector('.canvas-container').style.cursor = 'grabbing'
+  } else {
+    resetSelectedLine()
+    renderMeme(gCurrImg)
   }
 }
 
@@ -89,23 +96,25 @@ function getEvPos(ev) {
   return pos
 }
 
+// Filters the images by search/keywords
 function onFilterImgs(val) {
   setFilterImgs(val)
-  // getImages()
   renderGallery()
 }
 
+// Toggles the hamburger menu on mobile
 function onToggleMenu() {
   document.querySelector('.backdrop').classList.toggle('open-menu')
   document.querySelector('.navbar').classList.toggle('open-menu')
 }
 
+// Opens the editor with user's own image
 function onImgInput(ev) {
   loadImageFromInput(ev, initMeme)
-
   moveToPage('editor')
 }
 
+// Renders keywords
 function renderKeywords() {
   let keywords = getKeywords()
   let strHTMLs =
@@ -118,6 +127,7 @@ function renderKeywords() {
   document.querySelector('.categories').innerHTML = strHTMLs
 }
 
+// Clicking a keyword sizes up the keyword
 function onSizeUpKeyword(word) {
   sizeUpKeyword(word)
   initGallery()

@@ -7,6 +7,7 @@
     <title>Memegen</title>
     <script src="https://kit.fontawesome.com/f71a3c6bc9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   </head>
   <body onload="initGallery()">
     <header class="header-container">
@@ -82,13 +83,13 @@
           <button class="btn-edit" onclick="onChangeTextSize(-5)">
             <i class="fa fa-solid fa-arrow-down-a-z"></i>
           </button>
-          <button class="btn-edit" onclick="onChangeTextAlignment('end')">
+          <button class="btn-edit" onclick="onChangeTextAlignment('start')">
             <i class="fa fa-solid fa-align-left"></i>
           </button>
           <button class="btn-edit" onclick="onChangeTextAlignment('center')">
             <i class="fa fa-solid fa-align-center"></i>
           </button">
-          <button class="btn-edit" onclick="onChangeTextAlignment('start')">
+          <button class="btn-edit" onclick="onChangeTextAlignment('end')">
             <i class="fa fa-solid fa-align-right"></i>
           </button>
           <select class="font-select" onchange="onChangeTextFont(this.value)" name="font">

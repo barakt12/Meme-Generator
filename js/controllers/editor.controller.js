@@ -4,6 +4,7 @@ let gElCanvas
 let gCtx
 let gStartPos
 
+// Editor initalization
 function initMeme(img) {
   resetSelectedLine()
   setSelectedLine(0)
@@ -14,14 +15,29 @@ function initMeme(img) {
   renderStickers()
 }
 
+// Creates canvas and access to its context
 function createCanvas() {
   gElCanvas = document.querySelector('#meme-canvas')
   gCtx = gElCanvas.getContext('2d')
 }
 
+function initLinePositions() {
+  const meme = getGMeme()
+  meme.lines[0].pos = {
+    x: gElCanvas.width / 2,
+    y: 50,
+  }
+  meme.lines[1].pos = {
+    x: gElCanvas.width / 2,
+    y: gElCanvas.height - 50,
+  }
+}
+
+// Adds Listeners
 function addListeners() {
   addMouseListeners()
   addTouchListeners()
+  // Resizes the canvas and renders it as window size changes
   window.addEventListener('resize', () => {
     resizeCanvas()
     renderMeme(gCurrImg)
@@ -40,72 +56,24 @@ function addTouchListeners() {
   gElCanvas.addEventListener('touchend', onUp)
 }
 
+// Renders meme on canvas
 function renderMeme(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-  const memesObj = getGMeme()
-  const lines = memesObj.lines
+  const memeObj = getGMeme()
+  initLinePositions()
+  const lines = memeObj.lines
   lines.forEach((line) => makeLine(line))
   markLine(gMeme.lines[gMeme.selectedLineIdx])
 }
 
+// Resizes canvas
 function resizeCanvas() {
   const elContainer = document.querySelector('.canvas-container')
   gElCanvas.width = elContainer.offsetWidth
   gElCanvas.height = elContainer.offsetHeight
 }
 
-function makeLine(line) {
-  gCtx.textBaseline = 'middle'
-  gCtx.textAlign = line.align
-  gCtx.strokeStyle = line.strokeColor
-  gCtx.fillStyle = line.fillColor
-  gCtx.font = `${line.size}px ${line.fontfamily}`
-
-  gCtx.fillText(line.txt, line.pos.x, line.pos.y)
-  gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
-}
-
-function markLine(line) {
-  if (!line) return
-  const lineWidth = gCtx.measureText(line.txt).width
-  const lineHeight = line.size + 30
-  gCtx.strokeStyle = 'red'
-  gCtx.strokeRect(
-    line.pos.x - lineWidth / 2 - 10,
-    line.pos.y - lineHeight / 2,
-    lineWidth + 20,
-    lineHeight
-  )
-}
-
-function addNewLine(txt = 'New Sample') {
-  resetSelectedLine()
-  const line = {
-    txt: txt,
-    size: 40,
-    align: 'center',
-    fillColor: 'white',
-    strokeColor: 'black',
-    pos: {
-      x: 250,
-      y: 250,
-    },
-    fontfamily: 'impact',
-    isSelected: true,
-  }
-  gMeme.lines.push(line)
-  gMeme.selectedLineIdx = gMeme.lines.length - 1
-  markLine(gMeme.lines[gMeme.selectedLineIdx])
-}
-
-function deleteLine() {
-  const selectedLineIdx = gMeme.selectedLineIdx
-  gMeme.lines.splice(selectedLineIdx, 1)
-  if (gMeme.lines.length) {
-    gMeme.selectedLineIdx = selectedLineIdx - 1
-    gMeme.lines[gMeme.selectedLineIdx].isSelected = true
-  }
-}
+// Renders text input from text box
 
 function onSetText(text) {
   setLineText(text)
@@ -169,6 +137,8 @@ function onSave() {
   renderSaved()
   moveToPage('saved')
 }
+
+// Renders stickers
 
 function renderStickers() {
   const stickers = getStickers()
