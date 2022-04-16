@@ -123,6 +123,8 @@ function onChangeTextFont(val) {
 }
 
 function onDownload(ellink) {
+  resetSelectedLine()
+  renderMeme(gCurrImg)
   downloadMeme(ellink)
 }
 
